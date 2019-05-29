@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  WebApiUrl: 'http://www.sfinancierowebapi.somee.com'
+  WebApiUrl: 'https://www.sfinancierowebapi.somee.com'
 };

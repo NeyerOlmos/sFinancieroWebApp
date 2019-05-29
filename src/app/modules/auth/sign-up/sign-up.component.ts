@@ -53,21 +53,6 @@ updateSelectedRoles(index) {
     let x = this.roles.filter(x => x.selected).map(y => y.Name);
     this.authService.registerUser(form.value,x).then((val) => {
       console.log(val);
-      this.authService.signIn(this.user.UserName,this.user.Password).then(val=>{
-        sessionStorage.setItem("accessToken",val["access_token"]);
-        console.log(val["UserName"]);
-        sessionStorage.setItem('username', val["userName"]);
-        this.authService.getRolesByUser(this.user.UserName).then(val=>{
-          sessionStorage.setItem("roles",val.toString());
-        });
-        
-      })
-  
-        this.router.navigateByUrl('/');
-
-
-
-
       this.resetForm(form);
       this.SnackBar.open('se registro correctamente', ':)', {duration: 3000});
       }).catch(reason=>{

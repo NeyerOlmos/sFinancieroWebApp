@@ -16,17 +16,22 @@ export class MainNavComponent {
     .pipe(
       map(result => result.matches)
     );
-      roles:string[];
-  constructor(private breakpointObserver: BreakpointObserver, private authService:AuthService,private router:Router) {
+      roles: string[];
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) {
     if(!this.authService.isLogged()){
       this.router.navigateByUrl('/Auth/SignIn');
-    }else{
-
+    } else {
+      
     }
   }
 
 logOut(){
   this.authService.logOut();
 }
-
+hasPermission(_module: string,action?: string){
+  return this.authService.hasPermission(sessionStorage.getItem('roles') ,_module,action);
+}
+isLogged(){
+  return this.authService.isLogged();
+}
 }

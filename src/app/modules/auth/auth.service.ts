@@ -49,22 +49,53 @@ getAllRoles() {
   const reqHeader = new HttpHeaders({'No-Auth': 'True'});
   return this.http.get(this.apiUrl + '/api/GetAllRoles', {headers: reqHeader}).toPromise();
 }
-getRolesByUser(username: string){
+getRolesByUser(_username: string){
   const reqHeader = new HttpHeaders({'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")});
-  return this.http.post(this.apiUrl + '/api/Account/GetRolesByUser', username , {headers: reqHeader}).toPromise();
+  var body={
+    username:_username
+  }
+  
+  return this.http.post(this.apiUrl + '/api/Account/GetRolesByUser', body , {headers: reqHeader}).toPromise();
 
 }
 isLogged(): boolean {
 
   if ( sessionStorage.getItem("accessToken") != null){
-    console.log("isLogged");
-  return true;
-  }
-}
-hasAccess(){
-  if(sessionStorage.getItem("Roles")!=null){
     
+  return true;
+  }else{return false;}
+}
+readonly operadorActions: string[] =['ver', 'eliminar',"editar", 'crear']; 
+readonly operadorModules: string[] =['seguridad', 'usuario entidad','auth', 'movimiento de cuenta' , 'servicios']; 
+readonly clienteModules: string[] =['servicios','movimiento de cuenta']; 
+readonly clienteActions: string[] =[ 'gestionar solicitud', 'realizar pago de credito', 'realizar transaccion', 'reporte de movimiento', 'habilitar tarjeta', 'realizar pago de servicios']; 
+hasPermission(roles: string,  _module?: string , action?: string){
+ if(roles ==null){
+   return false;
+ }
+
+  if(roles.includes('Admin')){
+      return true;
+  }else if (roles.includes('Operador')  && this.operadorModules.includes(_module) ){
+      
+    return true;
+
+  }else if(roles.includes('Cliente') && this.clienteModules.includes(_module)){
+    
+    if(action!=null){
+        if(this.  clienteActions.includes(action)){
+          return true;
+        }else {
+          return false;
+        }
+      }
+      return true;
+
+  }else {
+    return false;
   }
 }
+getBitacora(){
 
+}
 }

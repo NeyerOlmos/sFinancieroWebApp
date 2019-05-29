@@ -10,6 +10,7 @@ const routes: Routes =
 {path: 'UsuarioEntidad', loadChildren: './modules/usuario-entidad/usuario-entidad.module#UsuarioEntidadModule'},
 {path: 'MovimientoCuenta', loadChildren: './modules/movimiento-de-cuenta/movimiento-de-cuenta.module#MovimientoDeCuentaModule'},
 {path: 'Auth', loadChildren: './modules/auth/auth.module#AuthModule'},
+{path: 'Seguridad', loadChildren: './modules/seguridad/seguridad.module#SeguridadModule'},
 ];
 
 @NgModule({

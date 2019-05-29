@@ -1,0 +1,7 @@
+<button mat-raised-button color="primary" (click)="download()">Download Bitacora</button>
+<button mat-raised-button color="primary" (click)="resetBitacora()">Reset Bitacora</button>
+<div *ngFor="let entry of bitacora" >
+  <mat-card>
+    {{entry}}
+  </mat-card>
+</div>

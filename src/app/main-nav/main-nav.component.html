@@ -6,12 +6,25 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
 
-      <a mat-list-item routerLink="/Auth/SignIn" routerLinkActive="active-link" >LogIn</a>
-      <button mat-menu-item (click)="logOut()" >LogOut</button>
-      <a  mat-list-item  [matMenuTriggerFor]="UsuarioEntidadMenu" >Modulo Usuario Endidad</a>
+      <a *ngIf='!isLogged()' mat-list-item routerLink="/Auth/SignIn" routerLinkActive="active-link" >LogIn</a>
+
+        <a *ngIf='hasPermission("seruridad")'  mat-list-item  [matMenuTriggerFor]="SeguridadMenu" >Seguridad</a>
+        <mat-menu #SeguridadMenu="matMenu">
+          <button mat-menu-item routerLink="/Seguridad/Bitacora" routerLinkActive="active-link"   >Administrar Bitacora</button>
+          <button mat-menu-item routerLink="/Seguridad/Bitacora" routerLinkActive="active-link"   >Asignar Privilegios</button>
+          <button mat-menu-item routerLink="/Seguridad/Bitacora" routerLinkActive="active-link"   >Realizar Backups</button>
+          
+        </mat-menu>
+        
+        <a *ngIf='hasPermission("usuario entidad")' mat-list-item  [matMenuTriggerFor]="UsuarioEntidadMenu" >Usuario Endidad</a>
         <mat-menu #UsuarioEntidadMenu="matMenu">
-          <button mat-menu-item   [matMenuTriggerFor]="GestionarClienteMenu" >Cliente</button>
-          <button mat-menu-item [matMenuTriggerFor]="GestionarTipoClienteMenu"  >Tipo de Cliente</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gestionar persona")' mat-menu-item   >Gestionar Persona</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gesionar usuario")' mat-menu-item   >Gestionar Usuario</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gestionar socio")' mat-menu-item   >Gestionar Socio</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gestionar empresa")' mat-menu-item   >Gestionar Empresa</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gestionar cliente")' mat-menu-item   [matMenuTriggerFor]="GestionarClienteMenu" >Gestionar Cliente</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gestionar tipo de cliente")' mat-menu-item [matMenuTriggerFor]="GestionarTipoClienteMenu"  >Tipo de Cliente</button>
+          <button *ngIf='hasPermission("movimiento de cuenta","gestionar grupo")' mat-menu-item   >Gestionar Grupo</button>
         </mat-menu>
 
           <mat-menu #GestionarClienteMenu="matMenu">
@@ -25,39 +38,87 @@
           </mat-menu>
 
 
-          <a  mat-list-item  [matMenuTriggerFor]="MovimientoCuentaMenu" >Movimiento de cuenta</a>
-            <mat-menu #MovimientoCuentaMenu="matMenu">
-                <button mat-menu-item   [matMenuTriggerFor]="GestionarAperturaDeCuentaMenu" >Gestionar Cuenta</button>
-                <button mat-menu-item [matMenuTriggerFor]="GestionarMonedaMenu"  >Gestionar Moneda</button>
-                <button mat-menu-item [matMenuTriggerFor]="GestionarMovimientoMenu"  >Gestionar Movimientos</button>
-                <button mat-menu-item   [matMenuTriggerFor]="GestionarChequeraMenu" >Gestionar Chequera</button>
-                <button mat-menu-item   [matMenuTriggerFor]="GestionarTarjetaMenu" >Gestionar Tarjeta</button>
-            </mat-menu>
-      
-            <mat-menu #GestionarAperturaDeCuentaMenu="matMenu">
-                <button mat-menu-item  routerLink="/MovimientoCuenta/AperturaDeCuenta" routerLinkActive="active-link" >Apertura de cuenta</button>
-                <button mat-menu-item  routerLink="/MovimientoCuenta/Cuentas" routerLinkActive="active-link" >Listado de cuentas</button>
-            </mat-menu>
-    
-            <mat-menu #GestionarMonedaMenu="matMenu">
+          <a *ngIf='hasPermission("movimiento de cuenta")' mat-list-item  [matMenuTriggerFor]="MovimientoCuentaMenu" >Movimiento de cuenta</a>
+          <mat-menu #MovimientoCuentaMenu="matMenu">
+            <button *ngIf='hasPermission("movimiento de cuenta","realizar pago de credito")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Realizar Pago de Credito</button>
+            <button *ngIf='hasPermission("movimiento de cuenta","realizar deposito")' mat-menu-item routerLink="/MovimientoCuenta/RealizarDeposito" routerLinkActive="active-link"  >Realizar Deposito</button>
+            <button *ngIf='hasPermission("movimiento de cuenta","realizar retiro")' mat-menu-item  routerLink="/" routerLinkActive="active-link"  >Realizar Retiro</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","realizar transaccion")' mat-menu-item [matMenuTriggerFor]="RealizarTransferenciaMenu"  >Realizar Transferencia</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","reporte de movimiento")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Reporte de Movimientos</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","habilitar tarjeta")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Habilitar Tarjeta (compras por internet)</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar chequera")' mat-menu-item   [matMenuTriggerFor]="GestionarChequeraMenu" >Gestionar Chequera</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar moneda")' mat-menu-item [matMenuTriggerFor]="GestionarMonedaMenu"  >Gestionar Moneda</button>
+              <button *ngIf='hasPermission("movimiento de cuenta" ,"gestionar tipo de cambio")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Gestionar Tipo de Cambio</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","apertura de cuenta")' mat-menu-item  routerLink="/MovimientoCuenta/AperturaDeCuenta" routerLinkActive="active-link" >Apertura de cuenta</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","asignar tarjeta")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Asignar Tarjeta</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","registrar tipo de tarjeta")'mat-menu-item routerLink="/" routerLinkActive="active-link"  >Registrar Tipo Tarjeta</button>
+              
+                
+
+              </mat-menu>
+
+                <mat-menu #GestionarCreditoMenu="matMenu">
+                  <button mat-menu-item  routerLink="/MovimientoCuenta/AperturaDeCuenta" routerLinkActive="active-link" >Pago de credito</button>
+                  <button mat-menu-item  routerLink="/MovimientoCuenta/Cuentas" routerLinkActive="active-link" >Listado de cuentas</button>
+                </mat-menu>
+                <mat-menu #GestionarAperturaDeCuentaMenu="matMenu">
+                  <button mat-menu-item  routerLink="/MovimientoCuenta/Cuentas" routerLinkActive="active-link" >Listado de cuentas</button>
+                </mat-menu>
+              
+              <mat-menu #GestionarMonedaMenu="matMenu">
                 <button mat-menu-item  routerLink="/MovimientoCuenta/Monedas" routerLinkActive="active-link" >Lista de monedas</button>
                 <button mat-menu-item routerLink="/MovimientoCuenta/AddMoneda" routerLinkActive="active-link" >Añadir nueva moneda</button>
             </mat-menu>       
-            <mat-menu #GestionarMovimientoMenu="matMenu">
-                <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarDeposito" routerLinkActive="active-link" >Realizar Deposito</button>
-                <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >Realizar Transferencia</button>
-                <button mat-menu-item  routerLink="/MovimientoCuenta/Movimientos" routerLinkActive="active-link" >Lista de movimientos</button>
-            </mat-menu>       
-            <mat-menu #GestionarChequeraMenu="matMenu">
+            <mat-menu #RealizarTransferenciaMenu="matMenu">
+              <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >...entre cuentas propias</button>
+              <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >...a cuentas del mismo banco</button>
+              <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarDeposito" routerLinkActive="active-link" >...a otros bancos</button>
+              </mat-menu>       
+              <mat-menu #GestionarChequeraMenu="matMenu">
                 <button mat-menu-item  routerLink="/MovimientoCuenta/Chequeras" routerLinkActive="active-link" >Lista de Chequeras</button>
                 <button mat-menu-item  routerLink="/MovimientoCuenta/RegistrarChequera" routerLinkActive="active-link" >Registrar Chequera</button>
-            </mat-menu>       
-            <mat-menu #GestionarTarjetaMenu="matMenu">
+              </mat-menu>       
+              <mat-menu #GestionarTarjetaMenu="matMenu">
                 <button mat-menu-item  routerLink="/MovimientoCuenta/AsignarTarjeta" routerLinkActive="active-link" >Asignar Tarjeta</button>
                 <button mat-menu-item  routerLink="/MovimientoCuenta/HabilitarTarjeta" routerLinkActive="active-link" >Habilitar Tarjeta</button>
                 <button mat-menu-item  routerLink="/MovimientoCuenta/RegistrarTipoDeTarjeta" routerLinkActive="active-link" >Registrar tipo de Cuenta</button>
-            </mat-menu>       
-
+              </mat-menu>       
+            
+            <a *ngIf='hasPermission("servicios")' mat-list-item  [matMenuTriggerFor]="ServiciosMenu" >Servicios</a>
+            <mat-menu #ServiciosMenu="matMenu">
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar solicitud")' mat-menu-item   [matMenuTriggerFor]="GestionarSolicitudMenu" >Gestionar Solicitud</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","registrar tipo de solicitud")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Registrar Tipo de Solicitud</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar banco")' mat-menu-item [matMenuTriggerFor]="GestionarBancoMenu"  >Gestionar Banco</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar servicio")' mat-menu-item   [matMenuTriggerFor]="GestionarServicioMenu" >Gestionar Servicio</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","registrar tipo de servicio")' mat-menu-item   routerLink="/" routerLinkActive="active-link" >Registrar Tipo de Servicio</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar credito")' mat-menu-item   [matMenuTriggerFor]="GestionarCreditoMenu" >Gestionar Credito</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","realizar pago de servicios")' mat-menu-item   routerLink="/" routerLinkActive="active-link" >Realizar Pago de Servicios</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","gestionar dpf")' mat-menu-item   [matMenuTriggerFor]="GestionarDPFMenu" >Gestionar DPF</button>
+            </mat-menu>
+            <mat-menu #GestionarSolicitudMenu="matMenu">
+                <button mat-menu-item  routerLink="/MovimientoCuenta/AsignarTarjeta" routerLinkActive="active-link" >nueva solicitud</button>
+                <button mat-menu-item  routerLink="/MovimientoCuenta/HabilitarTarjeta" routerLinkActive="active-link" >solicitudes</button>
+            </mat-menu>  
+             
+            <mat-menu #GestionarBancoMenu="matMenu">
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Nueva Banco solicitud</button>
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Lista de Bancos</button>
+            </mat-menu>  
+            <mat-menu #GestionarServicioMenu="matMenu">
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Nueva Servicio</button>
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Lista de Servicios</button>
+            </mat-menu>  
+            
+            <mat-menu #GestionarCreditoMenu="matMenu">
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Nuevo Credito</button>
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Lista de Creditos</button>
+            </mat-menu>  
+            <mat-menu #GestionarDPFMenu="matMenu">
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Nuevo DPF</button>
+                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Lista de DPF</button>
+            </mat-menu>  
+      <button *ngIf="isLogged()" mat-menu-item (click)="logOut()" >LogOut</button>
+            
 <!--
 
   <a mat-list-item routerLink="/UsuarioEntidad" routerLinkActive="active-link">Gestionr Cliente</a>
