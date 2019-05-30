@@ -23,8 +23,11 @@ export class SignInComponent implements OnInit {
       this.authService.getRolesByUser(this.username).then(val=>{
         sessionStorage.setItem('roles', 
         val.toString());
+        if(val.toString().includes("Cliente")){
+  
+          this.router.navigateByUrl('/UsuarioEntidad/detalleCliente/11');
+        }
       })
-
 
       this.router.navigateByUrl('/');
       this.snackBar.open('Se inicio Sesion Correctamente', 'ok', {duration: 3000 });

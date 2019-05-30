@@ -13,6 +13,7 @@
           <button mat-menu-item routerLink="/Seguridad/Bitacora" routerLinkActive="active-link"   >Administrar Bitacora</button>
           <button mat-menu-item routerLink="/Seguridad/Bitacora" routerLinkActive="active-link"   >Asignar Privilegios</button>
           <button mat-menu-item routerLink="/Seguridad/Bitacora" routerLinkActive="active-link"   >Realizar Backups</button>
+          <button mat-menu-item routerLink="/Auth/SignUp" routerLinkActive="active-link"   >Registrar Usuario</button>
           
         </mat-menu>
         
@@ -70,7 +71,8 @@
                 <button mat-menu-item routerLink="/MovimientoCuenta/AddMoneda" routerLinkActive="active-link" >Añadir nueva moneda</button>
             </mat-menu>       
             <mat-menu #RealizarTransferenciaMenu="matMenu">
-              <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >...entre cuentas propias</button>
+              <button mat-menu-item *ngIf="idCliente==null"  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >...entre cuentas propias</button>
+              <button mat-menu-item *ngIf="idCliente!=null"  routerLink="/MovimientoCuenta/RealizarTransferencia/idCliente" routerLinkActive="active-link" >...entre cuentas propias</button>
               <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarTransferencia" routerLinkActive="active-link" >...a cuentas del mismo banco</button>
               <button mat-menu-item  routerLink="/MovimientoCuenta/RealizarDeposito" routerLinkActive="active-link" >...a otros bancos</button>
               </mat-menu>       

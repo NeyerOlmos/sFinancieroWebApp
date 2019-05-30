@@ -18,6 +18,12 @@ signUp(email: string, password: string, confirmPassword: string ) {
     confirmPassword
   });
 }
+getIdClienteByUserName(username:string){
+  var body={
+    username:username
+  }
+  return this.http.post(this.apiUrl+"/api/getIdClienteByUserName",body);
+}
 registerUser(user: User,roles :string[]) {
   const body={
     UserName:user.UserName,
