@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TipoCuenta } from 'src/app/Models/tipo-cuenta';
 import { Cuenta } from 'src/app/Models/cuenta';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Moneda } from 'src/app/Models/moneda';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -13,6 +13,13 @@ import { environment } from 'src/environments/environment';
 })
 export class CuentasService {
   readonly apiUrl = environment.WebApiUrl;
+  readonly httpOptions = {
+    headers: new HttpHeaders({
+      accept : 'application/json',
+      'content-type': 'application/json',
+      Authorization : 'Bearer ' + sessionStorage.getItem('accessToken')
+    })
+  };
   constructor(private http: HttpClient) { }
 
 
@@ -53,5 +60,11 @@ return this.getCuentaById(idCuenta).pipe(map(value => {
 updateCuenta(cuenta: Cuenta, id: number) {
   return this.http.put(this.apiUrl + '/api/cuentas/' + id, cuenta);
 }
-
+getCuentasByClienteId( id: string):Observable<Cuenta[]>{
+  
+  const body={
+    id:id
+  }
+  return this.http.post<Cuenta[]>(this.apiUrl + '/api/CuentasByClienteId' ,body,this.httpOptions);
+}
 }

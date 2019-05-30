@@ -34,11 +34,13 @@ if (form != null) {
   form.reset();
 } else {
   this.user = {
+    Id:'',
     UserName: '',
     Password: '',
     Email: '',
     FirstName: '',
     LastName: '',
+    SecondLastName:"",
     Roles: []
     };
   if (this.roles) {

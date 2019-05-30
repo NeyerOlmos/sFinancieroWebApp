@@ -11,3 +11,15 @@
 
   </mat-card-content>
 </mat-card>
+<br>
+<h2>Cuentas: </h2>
+<div *ngFor="let cuenta of cuentas" >
+  <mat-card>
+    <mat-card-title>
+      {{cuenta.nroCuenta}}
+    </mat-card-title>
+<mat-card-content>
+  <div>saldo: {{cuenta.saldo}}</div>
+</mat-card-content>
+  </mat-card>
+</div>

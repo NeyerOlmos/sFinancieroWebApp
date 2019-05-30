@@ -42,8 +42,20 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>UserName</mat-label>
+      <input matInput [(ngModel)]="userName" #UserName="ngModel" placeholder="UserName"  name="UserName" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" #UserName="ngModel" placeholder="UserName" name="UserName" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" class="validate" matInput [(ngModel)]="password" #Password="ngModel" matInput placeholder="Password" name="Password" minlength="3" required >
+      <mat-label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required Field!':'Minimun 3 characters needed'):''">Password</mat-label>
+    </mat-form-field>
 
-    <div *ngIf='id!="";else buttonRegistrar;' >
+    <div *ngIf='id!=null;else buttonRegistrar;' >
 
       <button mat-raised-button color="primary" (click)="actualizarCliente()" >actualizar cliente</button>
     </div>

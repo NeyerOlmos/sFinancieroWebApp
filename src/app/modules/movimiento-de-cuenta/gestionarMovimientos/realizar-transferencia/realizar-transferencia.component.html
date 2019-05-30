@@ -1,12 +1,38 @@
 <mat-card>
+  <div *ngIf="id==null;else self">
+
     <mat-form-field>
-        <mat-label>Nro de cuenta 1</mat-label>
-        <input  matInput [(ngModel)]="nroCuenta1" matInput placeholder="nro de cuenta">
-      </mat-form-field>
+      
+      <mat-label>Nro de cuenta 1</mat-label>
+      <input  matInput [(ngModel)]="cuentaOrigen" matInput placeholder="nro de cuenta">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Nro de cuenta 2</mat-label>
+      <input  matInput [(ngModel)]="cuentaDestino" matInput placeholder="nro de cuenta 2">
+    </mat-form-field>
+  </div>
+  <ng-template #self>
       <mat-form-field>
-          <mat-label>Nro de cuenta 2</mat-label>
-          <input  matInput [(ngModel)]="nroCuenta2" matInput placeholder="nro de cuenta 2">
-        </mat-form-field>
+          <mat-label>Cuenta Origen</mat-label>
+          <mat-select [(value)]="cuentaOrigen" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.nroCuenta">
+                {{cuenta.nroCuenta}} (saldo:{{cuenta.saldo}})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Cuenta Destino</mat-label>
+              <mat-select [(value)]="cuentaDestino" required>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.nroCuenta">
+                    {{cuenta.nroCuenta}} (saldo:{{cuenta.saldo}})
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+    </ng-template>
 
       <mat-form-field>
         <mat-label>Monto</mat-label>

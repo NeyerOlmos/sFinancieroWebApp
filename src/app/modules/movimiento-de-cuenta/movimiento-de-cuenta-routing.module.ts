@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'AddMoneda', component: AddMonedaComponent},
   {path: 'RealizarDeposito', component: RealizarDepositoComponent},
   {path: 'RealizarTransferencia', component: RealizarTransferenciaComponent},
+  {path: 'RealizarTransferencia/:idCliente', component: RealizarTransferenciaComponent},
   {path: 'Chequeras', component: ChequerasComponent},
   {path: 'RegistrarChequera', component: RegistrarChequeraComponent},
   {path: 'AsignarTarjeta', component: AsignarTarjetaComponent},

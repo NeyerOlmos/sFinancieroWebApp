@@ -17,11 +17,18 @@ export class MainNavComponent {
       map(result => result.matches)
     );
       roles: string[];
+      idCliente:string;
   constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService, private router: Router) {
     if(!this.authService.isLogged()){
       this.router.navigateByUrl('/Auth/SignIn');
     } else {
-      
+      if(sessionStorage.getItem("roles").includes("Cliente")){
+        
+        this.authService.getIdClienteByUserName(sessionStorage.getItem("username").toString()).subscribe(val=>{
+          sessionStorage.setItem("idCliente",val.toString());
+          this.idCliente=sessionStorage.getItem("idCliente").toString();
+        });
+      }
     }
   }
 
