@@ -57,9 +57,9 @@ password: string;
         user.LastName=this.persona.paterno;
         user.SecondLastName=this.persona.materno;
         this.clienteService.registerUser(user, ['Cliente'] ).then(val => {
-          console.log('user registrado');
-          console.log(val);  
-          this.router.navigateByUrl('/MovimientoCuenta/AperturaDeCuenta/' + cliente.id);
+          console.log('user registrado' + val["id"]);
+          //console.log(val.id);  
+          this.router.navigateByUrl('/MovimientoCuenta/AperturaDeCuenta/' + val["id"]);
         })
     });
 

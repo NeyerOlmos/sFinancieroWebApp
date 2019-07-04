@@ -43,9 +43,9 @@
           <mat-menu #MovimientoCuentaMenu="matMenu">
             <button *ngIf='hasPermission("movimiento de cuenta","realizar pago de credito")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Realizar Pago de Credito</button>
             <button *ngIf='hasPermission("movimiento de cuenta","realizar deposito")' mat-menu-item routerLink="/MovimientoCuenta/RealizarDeposito" routerLinkActive="active-link"  >Realizar Deposito</button>
-            <button *ngIf='hasPermission("movimiento de cuenta","realizar retiro")' mat-menu-item  routerLink="/" routerLinkActive="active-link"  >Realizar Retiro</button>
+            <button *ngIf='hasPermission("movimiento de cuenta","realizar retiro")' mat-menu-item  routerLink="/MovimientoCuenta/RealizarRetiro" routerLinkActive="active-link"  >Realizar Retiro</button>
               <button *ngIf='hasPermission("movimiento de cuenta","realizar transaccion")' mat-menu-item [matMenuTriggerFor]="RealizarTransferenciaMenu"  >Realizar Transferencia</button>
-              <button *ngIf='hasPermission("movimiento de cuenta","reporte de movimiento")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Reporte de Movimientos</button>
+              <button *ngIf='hasPermission("movimiento de cuenta","reporte de movimiento")' mat-menu-item routerLink="/MovimientoCuenta/ReporteDeMovimientos" routerLinkActive="active-link"  >Reporte de Movimientos</button>
               <button *ngIf='hasPermission("movimiento de cuenta","habilitar tarjeta")' mat-menu-item routerLink="/" routerLinkActive="active-link"  >Habilitar Tarjeta (compras por internet)</button>
               <button *ngIf='hasPermission("movimiento de cuenta","gestionar chequera")' mat-menu-item   [matMenuTriggerFor]="GestionarChequeraMenu" >Gestionar Chequera</button>
               <button *ngIf='hasPermission("movimiento de cuenta","gestionar moneda")' mat-menu-item [matMenuTriggerFor]="GestionarMonedaMenu"  >Gestionar Moneda</button>
@@ -116,7 +116,7 @@
                 <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Lista de Creditos</button>
             </mat-menu>  
             <mat-menu #GestionarDPFMenu="matMenu">
-                <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Nuevo DPF</button>
+                <button mat-menu-item  routerLink="/Servicios/AddDPF" routerLinkActive="active-link" >Nuevo DPF</button>
                 <button mat-menu-item  routerLink="/" routerLinkActive="active-link" >Lista de DPF</button>
             </mat-menu>  
       <button *ngIf="isLogged()" mat-menu-item (click)="logOut()" >LogOut</button>
@@ -136,7 +136,7 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>sFinancieroWebApp</span>

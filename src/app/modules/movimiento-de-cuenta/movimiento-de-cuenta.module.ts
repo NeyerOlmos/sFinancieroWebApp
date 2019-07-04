@@ -17,10 +17,13 @@ import { HabilitarTarjetaComponent } from './gestionarTarjeta/habilitar-tarjeta/
 import { AsignarTarjetaComponent } from './gestionarTarjeta/asignar-tarjeta/asignar-tarjeta.component';
 import { RegistrarTipoDeTarjetaComponent } from './gestionarTarjeta/registrar-tipo-de-tarjeta/registrar-tipo-de-tarjeta.component';
 import { RealizarTransferenciaComponent } from './gestionarMovimientos/realizar-transferencia/realizar-transferencia.component';
+import { RealizarRetiroComponent } from './gestionarMovimientos/realizar-retiro/realizar-retiro.component';
+import { ReporteDeMovimientosComponent } from './gestionarCuenta/reporte-de-movimientos/reporte-de-movimientos.component';
+
 
 @NgModule({
 // tslint:disable-next-line: max-line-length
-  declarations: [ AperturaDeCuentaComponent, CuentaComponent, CuentasComponent, MovimientosComponent, MonedasComponent, AddMonedaComponent, RealizarDepositoComponent, ChequerasComponent, RegistrarChequeraComponent, HabilitarTarjetaComponent, AsignarTarjetaComponent, RegistrarTipoDeTarjetaComponent, RealizarTransferenciaComponent],
+  declarations: [ AperturaDeCuentaComponent, CuentaComponent, CuentasComponent, MovimientosComponent, MonedasComponent, AddMonedaComponent, RealizarDepositoComponent, ChequerasComponent, RegistrarChequeraComponent, HabilitarTarjetaComponent, AsignarTarjetaComponent, RegistrarTipoDeTarjetaComponent, RealizarTransferenciaComponent, RealizarRetiroComponent, ReporteDeMovimientosComponent],
   imports: [
     CommonModule,
     MovimientoDeCuentaRoutingModule,

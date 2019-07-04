@@ -1,0 +1,6 @@
+<div *ngIf="movimientos$ | async as movimientos">
+  <div *ngFor="let movimiento of movimientos">
+   Cuenta:{{movimieto.idCuenta}} IdMovimiento: {{movimiento.id}} Monto:{{movimiento.monto}}
+  </div>
+</div>
+<ag-grid [rowData]="data" [columnDefs]="colDefs" ></ag-grid>

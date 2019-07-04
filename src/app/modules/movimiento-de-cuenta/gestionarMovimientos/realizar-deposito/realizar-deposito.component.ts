@@ -26,14 +26,11 @@ monedas:Array<Moneda>;
     this.cuentasService.getCuentaByNroCuenta(this.nroCuenta).subscribe(value=>{
        
           value.saldo= value.saldo + +this.monto; 
-          this.cuentasService.updateCuenta(value,value.id).subscribe(result=>{
+          this.cuentasService.updateCuenta(value,value.id).then(result=>{
             console.log("deposito exitoso");
             console.log(result);
             this.snackBar.open("Deposito exitoso","gracias",{duration:3000});
           })
     })
-
-
-
   }
 }

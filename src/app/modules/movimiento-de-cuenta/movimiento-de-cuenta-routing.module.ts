@@ -12,6 +12,8 @@ import { HabilitarTarjetaComponent } from './gestionarTarjeta/habilitar-tarjeta/
 import { RegistrarTipoDeTarjetaComponent } from './gestionarTarjeta/registrar-tipo-de-tarjeta/registrar-tipo-de-tarjeta.component';
 import { AsignarTarjetaComponent } from './gestionarTarjeta/asignar-tarjeta/asignar-tarjeta.component';
 import { RealizarTransferenciaComponent } from './gestionarMovimientos/realizar-transferencia/realizar-transferencia.component';
+import { RealizarRetiroComponent } from './gestionarMovimientos/realizar-retiro/realizar-retiro.component';
+import { ReporteDeMovimientosComponent } from './gestionarCuenta/reporte-de-movimientos/reporte-de-movimientos.component';
 //import { RealizarMovimientoComponent } from './gestionarMovimientos/realizar-movimiento/realizar-movimiento.component';
 
 const routes: Routes = [
@@ -22,6 +24,7 @@ const routes: Routes = [
   {path: 'Movimientos', component: MovimientosComponent},
   {path: 'Monedas', component: MonedasComponent},
   {path: 'AddMoneda', component: AddMonedaComponent},
+  {path: 'RealizarRetiro', component: RealizarRetiroComponent},
   {path: 'RealizarDeposito', component: RealizarDepositoComponent},
   {path: 'RealizarTransferencia', component: RealizarTransferenciaComponent},
   {path: 'RealizarTransferencia/:idCliente', component: RealizarTransferenciaComponent},
@@ -30,6 +33,7 @@ const routes: Routes = [
   {path: 'AsignarTarjeta', component: AsignarTarjetaComponent},
   {path: 'HabilitarTarjeta', component: HabilitarTarjetaComponent},
   {path: 'RegistrarTipoDeTarjeta', component: RegistrarTipoDeTarjetaComponent},
+  {path: 'ReporteDeMovimientos', component: ReporteDeMovimientosComponent},
 
 ];
 

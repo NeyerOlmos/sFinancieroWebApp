@@ -18,7 +18,7 @@ export class BitacoraService {
           type
         }
         const reqHeader = new HttpHeaders({'Authorization': 'Bearer ' + sessionStorage.getItem("accessToken")});
-        return this.http.post(this.apiUrl + "/aspi/Bitacora",body,{headers: reqHeader} );
+        return this.http.post(this.apiUrl + "/api/Bitacora",body,{headers: reqHeader} );
 
       }
 }
