@@ -1,9 +1,9 @@
 <div class="container">
-
+  
   <mat-card>
-      <mat-form-field>
-          <mat-label>UserName</mat-label>
-          <input matInput autocomplete="false" [(ngModel)]="username" matInput placeholder="username">
+    <mat-form-field>
+        <mat-label>UserName</mat-label>
+        <input matInput autocomplete="false" [(ngModel)]="username" matInput placeholder="username">
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
@@ -11,8 +11,9 @@
         </mat-form-field>
         
         <br>
-          <button style="margin-bottom:5px;" mat-raised-button color="primary" (click)="signIn()" >Iniciar Sesión</button>
-          
+        <button style="margin-bottom:5px;" mat-raised-button color="primary" (click)="signIn()" >Iniciar Sesión</button>
+        
   </mat-card>
-
+      
 </div>
+<app-loading [isVisible]="viewBlocked" ></app-loading>

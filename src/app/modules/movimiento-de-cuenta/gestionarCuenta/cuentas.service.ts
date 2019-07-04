@@ -58,7 +58,7 @@ return this.getCuentaById(idCuenta).pipe(map(value => {
 
 
 updateCuenta(cuenta: Cuenta, id: number) {
-  return this.http.put(this.apiUrl + '/api/cuentas/' + id, cuenta);
+  return this.http.put(this.apiUrl + '/api/cuentas/' + id, cuenta).toPromise();
 }
 getCuentasByClienteId( id: string):Observable<Cuenta[]>{
   

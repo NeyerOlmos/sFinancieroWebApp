@@ -1,0 +1,30 @@
+<h1>
+  Añadir DPF
+</h1>
+
+<mat-form-field>
+  <mat-label>Id Cliete</mat-label>
+  <input  matInput [(ngModel)]="dpf.idCliente" matInput placeholder="id Cliente">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Id TipoDPF</mat-label>
+  <input  matInput [(ngModel)]="dpf.idTipoDPF" matInput placeholder="id Tipo DPF">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Monto</mat-label>
+  <input  matInput [(ngModel)]="dpf.monto" matInput placeholder="Monto">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Moneda</mat-label>
+  <mat-select [(value)]="monedaSeleccionada" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let moneda of monedas" [value]="moneda.id">
+        {{moneda.abreviatura}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  
+<button mat-raised-button color="primary" (click)="AddDPF()" >Registrar</button> 
+<app-loading [isVisible]="viewBlocked"></app-loading>

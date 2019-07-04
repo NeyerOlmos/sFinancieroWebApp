@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule, MatBadgeModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatStepperModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
-//import { BaseFormComponent } from './base-form/base-form.component';
-//import { FloatingButtonComponent } from './floating-button/floating-button.component';
-//import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { FileUploadComponent } from '../modules/authentication/file-upload/file-upload.component';
-//import { DropZoneDirective } from '../modules/authentication/file-upload/drop-zone.directive';
+import { LoadingComponent } from './loading/loading.component';
+import { BaseFormComponent } from './base-form/base-form.component';
+import { AgGridComponent } from './ag-grid/ag-grid.component';
+import { AgGridModule } from 'ag-grid-angular/main';
 @NgModule({
   declarations: [
-  //  BaseFormComponent,
-  //  FloatingButtonComponent,
-  // LoadingIndicatorComponent,
-  // FileUploadComponent,
-  // DropZoneDirective
-  ],
+  LoadingComponent,
+  BaseFormComponent,
+  AgGridComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -53,11 +50,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    RouterModule
+    RouterModule,
+    AgGridModule.withComponents([])
   ],
   exports: [
-   // FileUploadComponent,
-  //  DropZoneDirective,
     MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
@@ -93,7 +89,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTooltipModule,
    // BaseFormComponent,
    // FloatingButtonComponent,
-  //  LoadingIndicatorComponent,
+  LoadingComponent,
+  AgGridComponent
     
   ]
 })

@@ -1,0 +1,29 @@
+<h1>
+  Retiro de efectivo de una cuenta
+</h1>
+
+<mat-form-field>
+  <mat-label>Nro de cuenta</mat-label>
+  <input  matInput [(ngModel)]="nroCuenta" matInput placeholder="nro de cuenta">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Monto</mat-label>
+  <input  matInput [(ngModel)]="monto" matInput placeholder="Monto">
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Moneda</mat-label>
+  <mat-select [(value)]="monedaSeleccionada" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let moneda of monedas" [value]="moneda.id">
+        {{moneda.abreviatura}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  
+<button mat-raised-button color="primary" (click)="Retirar()" >Retirar</button>  
+<app-loading [isVisible]="viewBlocked" ></app-loading>
+        
+        
+        

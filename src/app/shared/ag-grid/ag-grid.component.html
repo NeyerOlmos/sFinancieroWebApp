@@ -1,0 +1,20 @@
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput type="text" placeholder="filter" (keyup)="quickSearch()" [(ngModel)]="searchValue">
+</mat-form-field>
+<ag-grid-angular 
+#agGrid
+style="width: 1000px; height: 750px;" 
+class="ag-theme-balham"
+[rowData]="rowData | async" 
+[columnDefs]="columnDefs"
+[animateRows]="true"
+[enableSorting]="true"
+[enableFilter]="true"
+[pagination]="true"
+[popupParent]="popupParent"
+[enableCharts]="true"
+[enableRangeSelection]="true"
+(gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>
