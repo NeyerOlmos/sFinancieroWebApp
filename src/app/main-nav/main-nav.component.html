@@ -17,6 +17,7 @@
           
         </mat-menu>
         
+        
         <a *ngIf='hasPermission("usuario entidad")' mat-list-item  [matMenuTriggerFor]="UsuarioEntidadMenu" >Usuario Endidad</a>
         <mat-menu #UsuarioEntidadMenu="matMenu">
           <button *ngIf='hasPermission("movimiento de cuenta","gestionar persona")' mat-menu-item   >Gestionar Persona</button>
