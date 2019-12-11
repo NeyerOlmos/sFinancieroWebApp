@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  WebApiUrl: 'http://localhost:51178'
+  WebApiUrl: 'http://sfinanciero.somee.com'
 };
 
 /*
